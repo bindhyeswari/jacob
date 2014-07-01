@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+
+
+        // references
+        // http://css-tricks.com/data-uris/
+        // https://developer.mozilla.org/en-US/docs/Web/API/FileReader.readAsDataURL
+        // 18.1.3.4 - file uploads ajax
+
+
+        var validationlib = {
+            maxsize: Infinity,
+            isImage: function( fileobj ){
+                return ['image/jpeg', 'image/png', 'image/gif'].indexOf(fileobj.type) !== -1;
+            },
+            isWithin: function( fileobj ) {
+                return fileobj.size <= this.maxsize
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function (){
+            var inputs = document.getElementsByTagName('input');
+           /* for ( var i = 0; i < inputs.length; i++ ) {
+                if (input.type === 'file') {
+
+                }
+            }*/
+
+
+            var input = document.getElementById('inp_photos');
+            var reader;
+            input.addEventListener('change', function (event){
+                console.log(event);
+                console.log(this.files);
+
+                for ( var i = 0; i < this.files.length; i++ ) {
+                    var file = this.files[i];
+                    if (validationlib.isImage(file) && validationlib.isWithin(file)) {
+
+                        reader  = new FileReader();
+                        reader.addEventListener('loadend', function(){
+                            // create an image element and assign the data uri as its source
+                            var img = document.createElement('img');
+                            img.src = reader.result;
+                            console.log(reader.result);
+                            document.body.appendChild(img);
+                        });
+                        reader.readAsDataURL(file);
+
+                        console.log('valid file: ' + file.name);
+                    }
+                }
+
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+<input type="file" id="inp_photos" multiple/>
+<input type="radio"/>
+<input type="checkbox"/>
+</body>
+</html>
