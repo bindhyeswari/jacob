@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        // Literal notation
+
+        var car1 = {
+            model: 'GLK 350',
+            getName: function(){
+                return this.model;
+            }
+        };
+
+        console.log(car1);
+
+        // Constructor
+
+
+        function Car(name){
+
+            // If you invoked new Car()
+            // new obj --> car2 --> this
+            // rest of the code is invoked on car2 via the keyword/alias "this"
+
+            this.model = name;
+
+
+        }
+
+        Car.prototype.getName = function(){
+            return this.model;
+        };
+
+
+        var car2 = new Car('GLK 350');
+
+
+        console.log(car2.getName());
+
+        Car.prototype.getName = function(){
+            return 'Modified ... ' + this.model;
+        };
+
+        car2.getName = function () {
+            return 'I am car2';
+        };
+
+        console.log(car2.getName());
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
