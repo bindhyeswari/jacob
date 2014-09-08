@@ -1,0 +1,18 @@
+/* Background from http://www.noisetexturegenerator.com/ */
+
+body {
+    font: 200 1em 'Helvetica Neue';
+    padding: 3em;
+    margin: 0;
+    background-image: url('back.png');
+    background-repeat: repeat;
+
+}
+
+input {
+    font: 200 1em 'Helvetica Neue';
+    outline: none;
+    border: 1px solid #eee;
+    padding: 0.35em 0.5em;
+    background-color: transparent;
+}
